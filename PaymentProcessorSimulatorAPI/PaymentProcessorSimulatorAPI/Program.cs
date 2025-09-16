@@ -1,20 +1,29 @@
-using PaymentApi.Services;
+﻿using PaymentApi.Services;
+using Swashbuckle.AspNetCore.SwaggerGen; // Ensure Swashbuckle is referenced
+using Swashbuckle.AspNetCore.SwaggerUI;  // Ensure Swashbuckle is referenced
+using Microsoft.OpenApi.Models;          // Optional, for OpenAPI types
+using Swashbuckle.AspNetCore.Swagger;    // Add this using for UseSwagger extension methods
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
 
-// Register payment service (DI)
+// ✅ Add Swagger / OpenAPI services
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Register in-memory payment service
 builder.Services.AddSingleton<IPaymentService, PaymentService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    // ✅ Enable Swagger UI
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

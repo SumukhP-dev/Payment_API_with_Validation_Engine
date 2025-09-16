@@ -1,14 +1,7 @@
-using PaymentApi.Models;
+﻿using PaymentApi.Models;
 
 namespace PaymentApi.Services
 {
-    public interface IPaymentService
-    {
-        Payment CreatePayment(Payment payment);
-        Payment? GetPayment(Guid id);
-        IEnumerable<Payment> GetAllPayments();
-    }
-
     public class PaymentService : IPaymentService
     {
         private static readonly List<Payment> _payments = new();
@@ -19,9 +12,14 @@ namespace PaymentApi.Services
             return payment;
         }
 
-        public Payment? GetPayment(Guid id) =>
-            _payments.FirstOrDefault(p => p.Id == id);
+        public Payment? GetPayment(Guid id)
+        {
+            return _payments.FirstOrDefault(p => p.Id == id);
+        }
 
-        public IEnumerable<Payment> GetAllPayments() => _payments;
+        public IEnumerable<Payment> GetAllPayments()
+        {
+            return _payments;
+        }
     }
 }

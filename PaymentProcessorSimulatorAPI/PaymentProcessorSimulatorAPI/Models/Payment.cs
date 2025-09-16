@@ -7,6 +7,6 @@ namespace PaymentApi.Models
         public decimal Amount { get; set; }
         public string Currency { get; set; } = "USD";
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public string Status { get; set; } = "Pending"; // e.g., Pending, Completed, Failed
+        public string Status { get; set; } = "Pending"; // Pending, Completed, Failed
     }
 }

@@ -30,3 +30,7 @@ C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\Payme
 C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\obj\Debug\net9.0\PaymentProcessorSimulatorAPI.pdb
 C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\obj\Debug\net9.0\PaymentProcessorSimulatorAPI.genruntimeconfig.cache
 C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\obj\Debug\net9.0\ref\PaymentProcessorSimulatorAPI.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\obj\Debug\net9.0\PaymentProcessorSimulatorAPI.sourcelink.json
+C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
