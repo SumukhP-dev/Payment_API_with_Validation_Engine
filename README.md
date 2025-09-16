@@ -9,9 +9,6 @@ A modular C++ validation engine built as a DLL that integrates with a C# ASP.NET
 ![Screenshot Placeholder](PaymentProcessorSimulatorAPI/screenshots/SwaggerPostRequestPage.png)  
 ![Screenshot Placeholder](PaymentProcessorSimulatorAPI/screenshots/SwaggerPaymentSchemaPage.png)  
 
-## Visiting the Website
-You can visit the link  https://bit.ly/sumukhp_portfolio to access the latest production build of the website.
-
 ---
 
 ## Features (What You’ll See)  
