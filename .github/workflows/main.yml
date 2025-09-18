@@ -27,7 +27,7 @@ jobs:
 
       # Publish from subfolder
       - name: Publish .NET project
-        run: dotnet publish ./PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI.csproj -c Release -o ./publish
+        run: dotnet publish ./PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI.csproj -c Release -o ./publish
 
       # Zip deployment package
       - name: Zip deployment package
