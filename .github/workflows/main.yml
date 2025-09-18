@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'   # Or whatever version you target
+          dotnet-version: '9.0.x'   # Or whatever version you target
 
       # Install AWS EB CLI
       - name: Install AWS Elastic Beanstalk CLI
