@@ -1,8 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;           // For OpenAPI/Swagger
 using PaymentApi.Services;                // Your custom services namespace
-using PaymentProcessingApi.Services;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +20,13 @@ builder.Services.AddSwaggerGen(options =>
 
 // Register your Payment Service
 builder.Services.AddSingleton<IPaymentService, PaymentService>();
-builder.Services.AddSingleton<S3Service>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+if (app.Environment.IsDevelopment() ||
+    app.Environment.IsStaging() ||
+    app.Environment.IsProduction())
 {
     // ✅ Enable Swagger middleware
     app.UseSwagger();

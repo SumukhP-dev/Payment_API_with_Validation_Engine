@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PaymentProcessorSimulatorAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79d67f3380343d195961482e3b58e19007ab1ccb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c7e442928114ed21fe34c89f6ba05acaf15bc84")]
 [assembly: System.Reflection.AssemblyProductAttribute("PaymentProcessorSimulatorAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PaymentProcessorSimulatorAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
