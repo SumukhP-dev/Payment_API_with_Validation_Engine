@@ -2,12 +2,11 @@ name: Deploy to AWS Elastic Beanstalk
 
 on:
   push:
-    branches: ["main"]   # Adjust branch if needed
+    branches: ["main"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       # Checkout repo
       - name: Checkout code
@@ -17,7 +16,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'   # Or whatever version you target
+          dotnet-version: '9.0.x'   # update as needed
 
       # Install AWS EB CLI
       - name: Install AWS Elastic Beanstalk CLI
@@ -45,6 +44,6 @@ jobs:
           EB_APPLICATION_NAME: ${{ secrets.EB_APPLICATION_NAME }}
           EB_ENVIRONMENT_NAME: ${{ secrets.EB_ENVIRONMENT_NAME }}
         run: |
-          eb init $EB_APPLICATION_NAME --region $AWS_REGION --platform "dotnet-core"
-          eb use $EB_ENVIRONMENT_NAME
+          eb init "$EB_APPLICATION_NAME" --region "$AWS_REGION" --platform "dotnet 8 (AL2023)"
+          eb use "$EB_ENVIRONMENT_NAME"
           eb deploy
