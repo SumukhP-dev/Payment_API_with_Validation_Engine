@@ -34,3 +34,5 @@ C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\Payme
 C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\AWSSDK.Core.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\PaymentProcessorSimulatorAPI\PaymentProcessorSimulatorAPI\bin\Debug\net9.0\AWSSDK.S3.dll
