@@ -1,0 +1,14 @@
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\PaymentProcessorSimulatorAPI
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\appsettings.Development.json
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\appsettings.json
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\PaymentProcessorSimulatorAPI.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\PaymentProcessorSimulatorAPI.deps.json
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\PaymentProcessorSimulatorAPI.runtimeconfig.json
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\PaymentProcessorSimulatorAPI.pdb
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\AWSSDK.Core.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\AWSSDK.S3.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\Microsoft.OpenApi.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\sumuk\Financial_Stock_Picker_Website\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
