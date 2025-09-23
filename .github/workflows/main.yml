@@ -1,4 +1,4 @@
-name: Deploy to AWS Elastic Beanstalk
+﻿name: Deploy to AWS Elastic Beanstalk
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'   # update as needed
+          dotnet-version: '8.0.x'   # EB-supported LTS
 
       # Install AWS EB CLI
       - name: Install AWS Elastic Beanstalk CLI
@@ -24,26 +24,76 @@ jobs:
           pip install awsebcli --upgrade --user
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      # Publish from subfolder
-      - name: Publish .NET project
-        run: dotnet publish ./PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI.csproj -c Release -o ./publish
-
-      # Zip deployment package
-      - name: Zip deployment package
+      - name: Install AWS CLI
         run: |
-          cd publish
-          zip -r ../app.zip .
-          cd ..
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+          aws --version
 
-      # Deploy to AWS Elastic Beanstalk
-      - name: Deploy app
+      # Publish Web API project
+      - name: Publish .NET project
+        run: |
+          dotnet publish ./PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI/PaymentProcessorSimulatorAPI.csproj \
+            -c Release \
+            -r linux-x64 \
+            --self-contained false \
+            -o ./publish
+
+      - name: Validate publish output
+        run: |
+          ls -lh ./publish
+          if ! ls ./publish/*.runtimeconfig.json 1> /dev/null 2>&1; then
+            echo "❌ runtimeconfig.json missing! Ensure you're publishing your Web API project (Sdk.Web)."
+            exit 1
+          fi
+
+      # Package deployment bundle
+      - name: Package deployment bundle
+        run: |
+          rm -f app.zip
+          zip -j app.zip publish/*
+          unzip -l app.zip   # list contents for debugging
+
+      # Detect latest .NET 8 AL2023 platform
+      - name: Get EB platform
+        id: platform
+        run: |
+          PLATFORM=$(aws elasticbeanstalk list-available-solution-stacks \
+            --region "$AWS_REGION" \
+            --query "SolutionStacks[?contains(@, 'Amazon Linux 2023') && contains(@, '.NET Core') && contains(@, '8')][-1]" \
+            --output text)
+          echo "Using EB platform: $PLATFORM"
+          echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          EB_APPLICATION_NAME: ${{ secrets.EB_APPLICATION_NAME }}
-          EB_ENVIRONMENT_NAME: ${{ secrets.EB_ENVIRONMENT_NAME }}
+
+      - name: Deploy app
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION: ${{ secrets.AWS_REGION }}
+            EB_APPLICATION_NAME: ${{ secrets.EB_APPLICATION_NAME }}
+            EB_ENVIRONMENT_NAME: ${{ secrets.EB_ENVIRONMENT_NAME }}
+            S3_BUCKET: ${{ secrets.EB_DEPLOY_BUCKET }}
+            PLATFORM: "64bit Amazon Linux 2023 v3.5.5 running .NET 8"
         run: |
-          eb init "$EB_APPLICATION_NAME" --region "$AWS_REGION" --platform "dotnet 8 (AL2023)"
-          eb use "$EB_ENVIRONMENT_NAME"
-          eb deploy
+            export AWS_PAGER=""   # ✅ disable pager so aws cli won't crash
+            VERSION="github-$(date +%Y%m%d%H%M%S)"
+            echo "📦 Uploading app.zip to s3://$S3_BUCKET/$VERSION.zip"
+            aws s3 cp app.zip s3://$S3_BUCKET/$VERSION.zip --region "$AWS_REGION"
+    
+            echo "📄 Creating EB application version: $VERSION"
+            aws elasticbeanstalk create-application-version \
+              --application-name "$EB_APPLICATION_NAME" \
+              --version-label "$VERSION" \
+              --source-bundle S3Bucket=$S3_BUCKET,S3Key=$VERSION.zip \
+              --region "$AWS_REGION"
+    
+            echo "🚀 Updating EB environment: $EB_ENVIRONMENT_NAME"
+            aws elasticbeanstalk update-environment \
+              --environment-name "$EB_ENVIRONMENT_NAME" \
+              --version-label "$VERSION" \
+              --region "$AWS_REGION"
